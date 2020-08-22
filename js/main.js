@@ -1,6 +1,7 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 const btnBasket = document.querySelector(".btn-cart");
 const basket = document.querySelector(".basket");
+let productInBasketGlobal = [];
 let buttons = [];
 class ProductList {
     constructor(container = '.products') {
@@ -43,7 +44,7 @@ class ProductList {
         buttons = document.querySelectorAll('.buy-btn');
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
-                BasketList.addBasketItem(btn);
+                newBasketList.addBasketItem(btn);
             })
         })
     }
@@ -79,6 +80,7 @@ class BasketList {
         this._getProducts()
             .then(data => {
                 this.productInBasket = [...data.contents];
+                productInBasketGlobal = this.productInBasket;
                 this.amount = data.amount;
                 this.countGoods = data.countGoods;
                 this.render()
@@ -93,8 +95,19 @@ class BasketList {
             })
     }
 
-    static addBasketItem(btn) {
+    addBasketItem(btn) {
         console.log(btn.dataset.id);
+        this.productInBasket.forEach(product => {
+            if (btn.dataset.id == product.id_product) {
+                product.quantity += 1;
+                product.price += product.price;
+                this.render();
+            }
+        })
+    }
+
+    clearBasket() {
+
     }
 
     removeBasketItem() {
@@ -124,11 +137,11 @@ class BasketList {
 }
 
 class BasketItem {
-    constructor(productInBasket) {
-        this.title = productInBasket.product_name;
-        this.id = productInBasket.id_product;
-        this.price = productInBasket.price;
-        this.count = productInBasket.quantity;
+    constructor(product) {
+        this.title = product.product_name;
+        this.id = product.id_product;
+        this.price = product.price;
+        this.count = product.quantity;
     }
     render() {
         return `<tr>
