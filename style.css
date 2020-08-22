@@ -103,3 +103,43 @@ p{
 .buy-btn:active{
     opacity: 0.7;
 }
+
+.hidden{
+    visibility: hidden;
+}
+
+main{
+    position: relative;
+}
+
+.basket {
+    position: absolute;
+    width: 400px;
+    min-height: 100px;
+    border: 1px solid;
+    top: -20px;
+    right: 100px;
+    background-color: gainsboro;
+}
+
+.basket__table{
+    width: 100%;
+    padding: 5px;
+    font-family: Raleway;
+    font-size: 14px;
+    line-height: 23px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.basket__ID {
+    width: 10%;
+}
+
+.basket__count{
+    width: 10%;
+}
+
+.basket__price{
+    width: 20%; 
+}
