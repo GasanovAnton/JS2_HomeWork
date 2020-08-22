@@ -43,7 +43,7 @@ class ProductList {
         buttons = document.querySelectorAll('.buy-btn');
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
-                console.log(btn.dataset.id)
+                BasketList.addBasketItem(btn);
             })
         })
     }
@@ -93,8 +93,8 @@ class BasketList {
             })
     }
 
-    addBasketItem() {
-
+    static addBasketItem(btn) {
+        console.log(btn.dataset.id);
     }
 
     removeBasketItem() {
